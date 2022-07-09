@@ -12,39 +12,34 @@ let playerListRepository = (function () {
   function getAll() {
         return playerList;
     }
+    function addListItem(player) {
+        let listElement = document.querySelector('.player-list');
+        //console.log(listElement);
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.addEventListener('click', function() {
+            showDetails(player);
+        });
+        button.innerText = player.name;
+        console.log(button.innerText);
+        button.classList.add('nameButton');
+        listItem.appendChild(button);
+        listElement.appendChild(listItem);
+    }
+    function showDetails(player) {
+        console.log(player);
+    }
   return {
-    add: add,
-    getAll: getAll
+    // the below code takes this form becuase the key and value are the same in each. add: add etc.
+     add,
+     getAll,
+     addListItem
   };
 })();
 
-let text = "";
-// the commented code below will remain for now as an example of another way to achieve the same end as the forEach()
-/*let printPlayerList = (list) => {
-  for (i = 0; i < list.length; i++ ) {
-    if (list[i].salary > 9000) {
-        document.write(`<br> ${list[i].name} ${text} (cost: ${list[i].salary}) - Whoa, that ${list[i].name} is expensive <br>`);
-    }
-
-    else {
-        document.write(`<br> ${list[i].name} ${text} (cost: ${list[i].salary}) <br>`);
-    }
-  }
-} */
-
 playerListRepository.add({name: 'Justin Jefferson', salary: 8800, position: ['Offense', 'WR', 'FLX', 'SFLX' ]});
 playerListRepository.getAll().forEach(function(list) {
-    if (list.salary > 9000) {
-        document.write(`<br> ${list.name} ${text} (cost: ${list.salary}) - Whoa, that ${list.name} is expensive <br>`);
-    }
-    else {
-        document.write(`<br> ${list.name} ${text} (cost: ${list.salary}) <br>`);
-    }
+    //without this call below, list does not display
+    playerListRepository.addListItem(list);
 });
-
-
-
-//printPlayerList(playerList);
-
-
 console.log(playerListRepository.getAll());
