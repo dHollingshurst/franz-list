@@ -1,9 +1,70 @@
 
 :root {
     --heading-font-weight: 700;
+    --primary-font-family: 'Staatliches', cursive;;
 }
 body {
-    font-family: 'Staatliches', cursive;;
+    font-family: var(--primary-font-family);
     margin: 10px;
     padding: 10px;
 }
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.list-block {
+    background-color: white;
+}
+.nameButton {
+    /*adds spacing to the button (this will be discussed more in-depth later) */
+  padding: 16px 32px;
+  text-align: center;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 4px 2px;
+  font-size: 16px;
+  background-color: azure;
+  /* gives the button a bottom border with a width of 2px, a type of solid,
+and a color in RGBA format */
+  border: 3px solid rgba(0,0,0,0.9);
+  /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
+  transition: opacity 0.2s;
+  font-family: var(--primary-font-family);
+}
+.nameButton:hover {
+    /* lets the mouse appear as a hand when hovering over the button*/
+  cursor: pointer;
+  /* reduces the opacity of the button to 80% */
+  opacity: 0.6;
+}
+.list-logo {
+    color: black;
+}
+
+
+/* responsive classes should be at the end of sheet, so that they can overwrite.
+ This @media  allows for the specification of rules to screen sizes*/
+ @media all and (max-width: 500px) {
+    .project-list {
+      grid-template-columns: 1fr;
+      }
+    }
+    @media all and (min-width: 500px) and (max-width: 750px) {
+      .project-list {
+        grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media all and (max-width: 750px) {
+      .project-list {
+        grid-gap: 10px;
+      }
+      .project-list__item:last-child {
+        grid-column: 1/auto;
+        grid-row: 1/auto;
+      }
+      h1 {
+        font-size: 22px;
+      }
+    }
