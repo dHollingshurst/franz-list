@@ -1,14 +1,18 @@
-/*IIFE employed. protects variables. to access pokemonList[], add(), getAll(), or addListItem(), pokemonRepository
+/*IIFE employed. protects variables. to access pokemonList[], add(), getAll(), addListItem() etc., pokemonRepository
 must first be envoked - see the add() and getAll().forEach() calls below  . see js functions pt 2 exercise 1.5 of full stack emersion.*/
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
-    //adds a new pokemon to the list when executed. must pass name, salary, and positions as arguments
+    if (typeof pokemon === "object" && "name" in pokemon) {
         pokemonList.push(pokemon);
+    } else {
+        console.log('pokemon is not correct');
     }
-
+}
+    
   function getAll() {
     // returns the list of pokemon and their details
         return pokemonList;
@@ -17,9 +21,9 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
         // .pokemon-list is the class of the ul
         let listElement = document.querySelector('.pokemon-list');
-        //console.log(listElement);
         // creates li for the ul
         let listItem = document.createElement('li');
+        listItem.classList.add('.list-item')
         // creates a button and variable called button, and adds an event handler for the click event. handler prints name to log
         let button = document.createElement('button');
         button.addEventListener('click', function() {
@@ -38,9 +42,60 @@ let pokemonRepository = (function () {
   function showDetails(pokemon) {
         // this is the function called by the button click event
         loadDetails(pokemon).then( function() {
-        console.log(pokemon);
+
+        // intrdoducing the modal to the 'click' event
+        modalContainer.innerHTML = '';
+
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+
+        /* add modal content: close button, title, inner text. 
+        these wil be created, then appended to the modal element */
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = pokemon.name;
+
+        let contentElement = document.createElement('p');
+        contentElement.innerText = 'Height: ' + pokemon.height;
+
+        let imageElement = document.createElement('img');
+        imageElement.classList.add('pokemon-img')
+        imageElement.src = pokemon.imageUrl;
+        // append all newly created elements to the modal element
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modal.appendChild(imageElement);
+        // append modal and its' children to modalContainer
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+
+        function hideModal() {
+          modalContainer.classList.remove('is-visible');
+        }
+        
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();
+          }
         });
+
+        modalContainer.addEventListener('click', (e) => {
+          let target = e.target;
+          if (target === modalContainer) {
+            hideModal();
+          }
+        });
+
+        //document.querySelector('name-button')
+      });
     }
+  
 
   function loadList() {
     return fetch(apiUrl).then(function (response)
@@ -80,7 +135,7 @@ let pokemonRepository = (function () {
      getAll,
      addListItem,
      loadList,
-     //loadDetails
+     loadDetails
   };
 })();
 
@@ -88,7 +143,7 @@ let pokemonRepository = (function () {
 // pokemonRepository.add({});
 
 pokemonRepository.loadList().then(function() {
-    pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.getAll().forEach(function (pokemon) {
     /*without this call below, list does not display. this forEach() is what runs through all the array objects and executes all of 
     the addListItem() on each object of the array - gives them a button, adds event, etc */
     pokemonRepository.addListItem(pokemon);
