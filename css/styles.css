@@ -111,8 +111,3 @@ and a color in RGBA format */
 
 /* responsive classes should be at the end of sheet, so that they can overwrite.
  This @media  allows for the specification of rules to screen sizes*/
- @media all and (max-width: 720px) {
-  .pokemon-list>li {
-      flex: 0 0 45%;
-  }
-}
