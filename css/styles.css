@@ -22,10 +22,10 @@ a {
 @supports (display: grid) {
 
   .list-block {
-    background-color: rgb(154, 212, 222);
+    background-color: rgba(128, 152, 156, 0.168);
     width: auto;
     min-width: min-content;
-    border: ridge 5px rgb(11, 11, 99);
+    border: ridge 5px rgba(10, 10, 29, 0.807);
     border-radius: 5px;
 }
 
@@ -43,11 +43,12 @@ a {
   display: inline-block;
   margin: 4px 2px;
   font-size: 16px;
-  background-color: azure;
+  background-color: rgba(151, 224, 224, 0.792);
   /* gives the button a bottom border with a width of 2px, a type of solid,
 and a color in RGBA format */
   border: 3px solid rgba(0,0,0,0.9);
   /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
+  border-bottom: 5px ridge rgba(0,0,0,0.9);
   transition: opacity 0.2s;
   font-family: var(--primary-font-family);
   width: auto;
