@@ -9,6 +9,7 @@ body {
     margin: 10px;
     padding: 10px;
     text-align: left;
+    background-color: black;
 }
 
 ul {
@@ -21,42 +22,40 @@ a {
 
 @supports (display: grid) {
 
-  .list-block {
-    background-color: rgba(128, 152, 156, 0.168);
+  .pokemon-list{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+  }
+  
+  .nameButton {
+      /*adds spacing to the button (this will be discussed more in-depth later) */
+    padding: 16px 32px;
+    text-align: center;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 4px 2px;
+    font-size: 16px;
+    background-color: rgba(151, 224, 224, 0.792);
+    /* gives the button a bottom border with a width of 2px, a type of solid,
+  and a color in RGBA format */
+    border: 3px solid rgba(0,0,0,0.9);
+    /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
+    border-bottom: 5px ridge rgba(0,0,0,0.9);
+    transition: opacity 0.2s;
+    font-family: var(--primary-font-family);
     width: auto;
-    min-width: min-content;
-    border: ridge 5px rgba(10, 10, 29, 0.807);
-    border-radius: 5px;
-}
+    grid-column: 1/4;
+    grid-row: 1;
+    width: 75%;
+  }
+  }
 
-.pokemon-list{
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 
-.nameButton {
-    /*adds spacing to the button (this will be discussed more in-depth later) */
-  padding: 16px 32px;
-  text-align: center;
-  border-radius: 2px;
-  display: inline-block;
-  margin: 4px 2px;
-  font-size: 16px;
-  background-color: rgba(151, 224, 224, 0.792);
-  /* gives the button a bottom border with a width of 2px, a type of solid,
-and a color in RGBA format */
-  border: 3px solid rgba(0,0,0,0.9);
-  /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
-  border-bottom: 5px ridge rgba(0,0,0,0.9);
-  transition: opacity 0.2s;
-  font-family: var(--primary-font-family);
-  width: auto;
-  grid-column: 1/4;
-  grid-row: 1;
-  width: 75%;
-}
-}
 
 .nameButton:hover {
     /* lets the mouse appear as a hand when hovering over the button*/
@@ -67,88 +66,38 @@ and a color in RGBA format */
 
 .list-logo {
     color: black;
-    display: inline-block;
+    display: block;
     width: auto;
-    font-size: 70px;
-}
-
-#modal-container {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  
-  /* to show it above other content */
-  z-index: 999; 
-  
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto; 
-  
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: grid;
-
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 500px;
-  text-align: left;
-  border: ridge 5px rgb(11, 11, 99);
+    font-size: 30px;
 }
 
 .pokemon-img {
+  width: 25%;
   max-width: 100%;
   grid-column: 3/5;
   -ms-grid-column-span: 2
  }
 
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-  border: solid ;
-  border-radius: 1px;
-  background: none;
-  color: #777;
-  text-decoration: underline;
-  font-family: inherit;
-  grid-column: 5/5;
+.page-container {
+  margin-top: 125px;
+  background-color: rgb(47, 52, 56);
+  border: 5px ridge rgb(10, 93, 94);
+  border-radius: 5px;
 }
 
-.modal h1 {
-  margin-top: 0;
-  grid-column: 1/5;
-  grid-row: 1/5;
+.list-container {
+  background-color: rgb(132, 158, 158);
+  border: 2px solid rgb(11, 14, 14);
+  border-radius: 5px;
+}
+.modal-content {
+  background-color: rgb(151, 224, 224);
+  text-align: center;
 }
 
-.modal p {
-  margin-bottom: 0;
-  font-size: large;
-  grid-row: 2/5;
-  grid-column: 1/5;
-  
+#navbar {
+  background-color: rgb(151, 224, 224);
 }
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  /* CSS for modal container - add your own desired CSS styles here */
-  display: block;
-}
-
-
-
 /* responsive classes should be at the end of sheet, so that they can overwrite.
  This @media  allows for the specification of rules to screen sizes*/
 
