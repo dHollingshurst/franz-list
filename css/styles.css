@@ -6,69 +6,69 @@
 
 body {
     font-family: var(--primary-font-family);
-    margin: 10px;
-    padding: 10px;
-    text-align: left;
-    background-color: black;
+    background-color: rgb(5, 32, 52);
 }
 
 ul {
     list-style: none;
+   
 }
 
 a {
     text-decoration: none;
 }
 
-@supports (display: grid) {
-
-  .pokemon-list{
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    
-    padding-top: 10px;
-    padding-bottom: 10px;
-    
-  }
-  
-  .nameButton {
-      /*adds spacing to the button (this will be discussed more in-depth later) */
-    padding: 16px 32px;
-    text-align: center;
-    border-radius: 3px;
-    display: inline-block;
-    margin: 4px 2px;
-    font-size: 16px;
-    background-color: rgba(151, 224, 224, 0.792);
-    /* gives the button a bottom border with a width of 2px, a type of solid,
-  and a color in RGBA format */
-    border: 3px solid rgba(0,0,0,0.9);
-    /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
-    border-bottom: 5px ridge rgba(0,0,0,0.9);
-    transition: opacity 0.2s;
-    font-family: var(--primary-font-family);
-    width: auto;
-    grid-column: 1/4;
-    grid-row: 1;
-    width: 75%;
-  }
-  }
-
-
-
-.nameButton:hover {
-    /* lets the mouse appear as a hand when hovering over the button*/
-  cursor: pointer;
-  /* reduces the opacity of the button to 80% */
-  opacity: 0.6;
+#list-container {
+  margin-top: 125px;
 }
 
-.list-logo {
-    color: black;
-    display: block;
-    width: auto;
-    font-size: 30px;
+.pokemon-button {
+     text-align: center;
+     border-radius: 5px;
+     color: black;
+     margin: 4px 2px;
+     font-size: 16px;
+     background-color: rgba(151, 224, 224, 0.792);
+     /* gives the button a bottom border with a width of 2px, a type of solid,
+   and a color in RGBA format */
+     border: 3px solid rgba(0,0,0,0.9);
+     /* transition defines the gradual change in button visual. this one line defines both property and duration of transition with default vaules for function and delay unless altered. if 2 other values were included, these would affect those properties.*/
+     transition: opacity 0.2s;
+     font-family: var(--primary-font-family);
+     display: grid;
+     grid-gap: 5px;
+     grid-template-columns: 1fr 1fr 1fr 1fr; 
+     padding-top: 10px;
+     padding-bottom: 10px;
+     max-width: 100%;    
+    }
+  
+#pokemon-list {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.list-group-item {
+  display: grid;
+  border: solid 4px black;
+  border-radius: 5px;
+  background-color: rgb(14, 110, 154);
+}
+
+#navbar {
+  background-color: black;
+}
+
+#search {
+  max-width: 25%;
+
+}
+
+#navbarNav {
+  margin-top: 5px;
 }
 
 .pokemon-img {
@@ -78,43 +78,45 @@ a {
   -ms-grid-column-span: 2
  }
 
-.page-container {
-  margin-top: 125px;
-  background-color: rgb(47, 52, 56);
-  border: 5px ridge rgb(10, 93, 94);
-  border-radius: 5px;
-}
-
-.list-container {
-  background-color: rgb(132, 158, 158);
-  border: 2px solid rgb(11, 14, 14);
-  border-radius: 5px;
-}
-.modal-content {
+ .modal-content {
   background-color: rgb(151, 224, 224);
   text-align: center;
+  border: solid 2px rgb(19, 19, 16);
 }
 
-#navbar {
-  background-color: rgb(151, 224, 224);
+#top-btn {
+  max-width: 100%;
+}
+
+.modal-header {
+  border: solid 2px rgb(19, 19, 16);
+}
+
+.modal-body {
+  border: solid 2px rgb(19, 19, 16);
+  
+}
+
+.modal-footer {
+  border: solid 2px rgb(19, 19, 16);
 }
 /* responsive classes should be at the end of sheet, so that they can overwrite.
  This @media  allows for the specification of rules to screen sizes*/
-
+ 
  @media all and (max-width: 500px) {
-  .pokemon-list {
+  #pokemon-list {
     grid-template-columns: 1fr;
     }
   }
 
   @media all and (min-width: 500px) and (max-width: 750px) {
-    .pokemon-list {
+    #pokemon-list {
       grid-template-columns: 1fr 1fr;
       }
   }
 
   @media all and (max-width: 750px) {
-    .pokemon-list {
+    #pokemon-list {
       grid-gap: 10px;
     }
   }

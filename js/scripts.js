@@ -19,23 +19,26 @@ let pokemonRepository = (function () {
     }
 
   function addListItem(pokemon) {
-        // .pokemon-list is the class of the ul
-        let listElement = document.querySelector('.pokemon-list');
+        // .pokemon-list is the id of the ul
+        let listElement = $('#pokemon-list');
         // creates li for the ul
-        let listItem = document.createElement('li');
-        $('listItem').addClass("group-list-item col");
+        let listItem = $('<li></li>');
+        listItem.addClass("list-group-item");
+        //listItem.addClass("list-group-item-action")
         // creates a button and variable called button, and adds an event handler for the click event. handler prints name to log
         let button = document.createElement('button');
         button.innerText = pokemon.name;
         button.setAttribute("data-toggle", "modal");
         button.setAttribute("data-target", "#pokeModal");
-        $(button).addClass('btn btn-primary');
+        $(button).addClass('pokemon-button');
+        $(button).addClass('btn btn-primary col');
+       
         //gives variable button a class so it can be uniquely manipulated in css
         button.classList.add('nameButton');
         // attaches button to each li
-        listItem.appendChild(button);
+        listItem.append(button);
         // attachs the li to the ul. created elements need to be appended. 
-        listElement.appendChild(listItem);
+        listElement.append(listItem);
         button.addEventListener('click', function(e) {
           showDetails(pokemon);
       });
@@ -88,19 +91,49 @@ let pokemonRepository = (function () {
     modalTitle.empty();
     modalBody.empty();
 
-    let nameElement = $('<h1>' + pokemon.name + '<h1>');
-    let imageElement = $('<img class="pokemon-img">')
+    let nameElement = $('<h1>' + pokemon.name + '</h1>');
+    let imageElement = $('<img class="pokemon-img">');
     imageElement.attr("src", pokemon.imageUrl);
     let heightElement = $('<p>' +'Height: ' + pokemon.height + '</p>');
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
-    let typesElement = $('<p>' + 'Types: ' + pokemon.types +'</p>');
+   
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
-    modalBody.append(typesElement);
+   
   }
+
+  // search bar
+
+    let searchInput = document.getElementById("search");
+  // store name elements
+    let pokemonFromDOM = document.getElementsByClassName("list-group-item");
+  
+  // listen for user event
+    searchInput.addEventListener("keyup", (event) => {
+      const {value} = event.target;
+      // get user input converted to lower case
+      const searchQuery = value.toLowerCase();
+
+      for (const nameElement of pokemonFromDOM) {
+
+        // store name and convert to lower case
+        let name = nameElement.textContent.toLocaleLowerCase();
+        
+        // compare name to input
+        if (name.includes(searchQuery)) {
+          // if found, then display
+          nameElement.style.display = "block";
+        } else {
+          // if not, then don't
+          nameElement.style.display = "none";
+        }
+      }
+    });
+
+
 
    return {
     /* the return portion of the IIFE is essential as it is what allows you to access the listed functions elsewhere in the code.  
