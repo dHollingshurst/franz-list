@@ -27,7 +27,7 @@ let pokemonRepository = (function () {
         // creates a button and variable called button, and adds an event handler for the click event. handler prints name to log
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.setAttribute('data-toggle', 'modal);
+        button.setAttribute('data-toggle', 'modal');
         button.setAttribute('data-target', '#pokeModal');
         $(button).addClass('pokemon-button');
         $(button).addClass('btn btn-primary col');
@@ -38,7 +38,7 @@ let pokemonRepository = (function () {
         listItem.append(button);
         // attachs the li to the ul. created elements need to be appended. 
         listElement.append(listItem);
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function() {
           showDetails(pokemon);
       });
     }
@@ -91,7 +91,7 @@ let pokemonRepository = (function () {
     modalBody.empty();
 
     let nameElement = $('<h1>' + pokemon.name + '</h1>');
-    let imageElement = $('<img class='pokemon-img'>');
+    let imageElement = $('<img class=\'pokemon-img\'>');
     imageElement.attr('src', pokemon.imageUrl);
     let heightElement = $('<p>' +'Height: ' + pokemon.height + '</p>');
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
@@ -158,6 +158,7 @@ pokemonRepository.loadList().then(function() {
  });
 });
 
+// eslint-disable-next-line no-unused-vars
 function goToTop() {
   document.documentElement.scrollTop = 0;
-};
+}
