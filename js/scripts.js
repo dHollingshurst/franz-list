@@ -3,10 +3,9 @@ must first be envoked - see the add() and getAll().forEach() calls below  . see 
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
-    if (typeof pokemon === "object" && "name" in pokemon) {
+    if (typeof pokemon === 'object' && 'name' in pokemon) {
         pokemonList.push(pokemon);
     } else {
         console.log('pokemon is not correct');
@@ -23,13 +22,13 @@ let pokemonRepository = (function () {
         let listElement = $('#pokemon-list');
         // creates li for the ul
         let listItem = $('<li></li>');
-        listItem.addClass("list-group-item");
-        //listItem.addClass("list-group-item-action")
+        listItem.addClass('list-group-item');
+        //listItem.addClass('list-group-item-action')
         // creates a button and variable called button, and adds an event handler for the click event. handler prints name to log
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.setAttribute("data-toggle", "modal");
-        button.setAttribute("data-target", "#pokeModal");
+        button.setAttribute('data-toggle', 'modal);
+        button.setAttribute('data-target', '#pokeModal');
         $(button).addClass('pokemon-button');
         $(button).addClass('btn btn-primary col');
        
@@ -92,8 +91,8 @@ let pokemonRepository = (function () {
     modalBody.empty();
 
     let nameElement = $('<h1>' + pokemon.name + '</h1>');
-    let imageElement = $('<img class="pokemon-img">');
-    imageElement.attr("src", pokemon.imageUrl);
+    let imageElement = $('<img class='pokemon-img'>');
+    imageElement.attr('src', pokemon.imageUrl);
     let heightElement = $('<p>' +'Height: ' + pokemon.height + '</p>');
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
    
@@ -107,12 +106,12 @@ let pokemonRepository = (function () {
 
   // search bar
 
-    let searchInput = document.getElementById("search");
+    let searchInput = document.getElementById('search');
   // store name elements
-    let pokemonFromDOM = document.getElementsByClassName("list-group-item");
+    let pokemonFromDOM = document.getElementsByClassName('list-group-item');
   
   // listen for user event
-    searchInput.addEventListener("keyup", (event) => {
+    searchInput.addEventListener('keyup', (event) => {
       const {value} = event.target;
       // get user input converted to lower case
       const searchQuery = value.toLowerCase();
@@ -125,10 +124,10 @@ let pokemonRepository = (function () {
         // compare name to input
         if (name.includes(searchQuery)) {
           // if found, then display
-          nameElement.style.display = "block";
+          nameElement.style.display = 'block';
         } else {
           // if not, then don't
-          nameElement.style.display = "none";
+          nameElement.style.display = 'none';
         }
       }
     });
